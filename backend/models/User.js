@@ -19,8 +19,8 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['parent', 'restaurateur', 'admin'],
-      default: 'parent',
+      enum: ['user', 'super-user', 'admin'],
+      default: 'user',
     },
   },
   {
@@ -36,7 +36,7 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-// 🔑 Méthode de comparaison de mot de passe
+// comparaison de mot de passe
 userSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.motDePasse);
 };

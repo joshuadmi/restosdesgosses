@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap');
+
+:root {
+  --yellow: #ffd600;
+  --red: #ff6e68;
+  --blue: #62c8ff;
+  --green: #76e460;
+  --pink: #ff91e9;
+  --white: #fff;
+  --black: #333;
+  --gray: #ddd;
+}
+
+body {
+  font-family: 'Baloo 2', Arial, sans-serif;
+  background: var(--white);
+  color: var(--black);
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar {
+  background: var(--pink);
+  color: var(--green);
+  font-weight: bold;
+  font-size: 1.4rem;
+  padding: 1rem;
+}
+
+.footer {
+  background: var(--pink);
+  color: var(--black);
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid var(--gray);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .navbar, .footer {
+    font-size: 1rem;
+    padding: 0.7rem;
+  }
+}
