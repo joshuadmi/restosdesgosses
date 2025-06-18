@@ -5,6 +5,7 @@ import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import EditRestaurantForm from "../components/Restaurant/EditRestaurantForm";
+import EditReview from "../components/Review/EditReview"; // NOUVEAU
 
 export default function RestaurantPage() {
   const { id } = useParams();
@@ -13,17 +14,37 @@ export default function RestaurantPage() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
-  const [editingReviewId, setEditingReviewId] = useState(null);
-  const [editNote, setEditNote] = useState(0);
-  const [editComment, setEditComment] = useState("");
 
-  
+  // Rafraîchit la liste des avis et la fiche restaurant
+  const refreshAll = async () => {
+    await loadRestaurant();
+    await loadReviews();
+  };
 
   // Fonction pour recharger les avis
   const loadReviews = async () => {
     const res = await api.get(`/reviews/${id}`);
     setAvis(res.data);
   };
+
+  const loadRestaurant = async () => {
+    try {
+      const res = await api.get(`/restaurants/${id}`);
+      setResto(res.data);
+    } catch (err) {
+      if (err.response?.status === 404) {
+        setResto("notfound");
+      } else {
+        setResto(false);
+      }
+      console.error("Erreur lors du fetch resto :", err);
+    }
+  };
+
+  useEffect(() => {
+    loadRestaurant();
+    loadReviews();
+  }, [id]);
 
   useEffect(() => {
     api
@@ -96,18 +117,24 @@ export default function RestaurantPage() {
             <span style={{ color: "orange", marginLeft: 8 }}>⏳ À valider</span>
           )}
           {resto.images && resto.images.length > 0 && (
-            <img
-              src={resto.images[0]}
-              alt={resto.nom}
-              style={{
-                width: 120,
-                height: "auto",
-                objectFit: "cover",
-                borderRadius: 8,
-                marginRight: 12,
-              }}
-            />
+            <div style={{ display: "flex", gap: 12, marginBottom: 12 }}>
+              {resto.images.map((img, idx) => (
+                <img
+                  key={idx}
+                  src={img}
+                  alt={resto.nom}
+                  style={{
+                    width: 120,
+                    height: "auto",
+                    objectFit: "cover",
+                    borderRadius: 8,
+                    marginRight: 12,
+                  }}
+                />
+              ))}
+            </div>
           )}
+
           <p>
             {resto.adresse}, {resto.ville}
           </p>
@@ -154,27 +181,19 @@ export default function RestaurantPage() {
 
           <br />
 
-          <AddReview restaurantId={id} onReviewAdded={loadReviews} />
+          <AddReview restaurantId={id} onReviewAdded={refreshAll} />
           <h2>Avis</h2>
           {avis.length === 0 ? (
             <p>Aucun avis pour ce restaurant.</p>
           ) : (
             <ul>
               {avis.map((r) => (
-                <li key={r._id}>
-                  <b>{r.auteur?.nom || "Utilisateur"}</b> : <b>{r.note}/5</b>
-                  <br />
-                  {r.commentaire}
-                  {/* Affiche les boutons si c'est l'utilisateur connecté */}
-                  {user && user.id === r.auteur?._id && (
-                    <>
-                      <button onClick={() => handleEdit(r)}>Modifier</button>
-                      <button onClick={() => handleDelete(r._id)}>
-                        Supprimer
-                      </button>
-                    </>
-                  )}
-                </li>
+                <EditReview
+                  key={r._id}
+                  review={r}
+                  onUpdated={refreshAll}
+                  onDeleted={refreshAll}
+                />
               ))}
             </ul>
           )}

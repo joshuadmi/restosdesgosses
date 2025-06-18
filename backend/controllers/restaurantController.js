@@ -63,26 +63,6 @@ export async function validerRestaurant(req, res) {
   }
 }
 
-export async function proposedUpdate(req, res) {
-  try {
-    const { nom, adresse, description, horaires, commentaire } = req.body;
-
-    // Stocke uniquement ce qui est proposé (tu peux améliorer avec un diff plus fin si tu veux)
-    const modif = { nom, adresse, description, horaires };
-
-    await ProposedUpdate.create({
-      restaurant: req.params.id,
-      utilisateur: req.user._id,
-      modification: modif,
-      commentaire,
-      statut: "en attente",
-    });
-
-    res.json({ message: "Suggestion enregistrée" });
-  } catch (err) {
-    res.status(500).json({ message: "Erreur serveur" });
-  }
-}
 
 export async function updateRestaurant(req, res) {
   try {

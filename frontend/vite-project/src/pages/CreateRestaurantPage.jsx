@@ -103,8 +103,7 @@ export default function CreateRestaurantPage() {
     for (let i = 0; i < images.length; i++) {
       const formData = new FormData();
       formData.append("file", images[i]);
-      formData.append("upload_preset", "restos_gosse"); // ton nom de preset
-      // Uploade sur Cloudinary
+      formData.append("upload_preset", "restos_gosse"); 
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/test-niveau2/image/upload",
         {

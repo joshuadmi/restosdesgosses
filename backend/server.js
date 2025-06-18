@@ -7,6 +7,7 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth.js";
 import restaurantRoutes from "./routes/restaurants.js";
 import reviewRoutes from "./routes/reviews.js";
+
 // tu ajoutes ici d’autres routes...
 
 const app = express();
@@ -25,6 +26,8 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/restaurants", restaurantRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/restaurants/tags", restaurantRoutes);
+
 
 app.get("/", (req, res) => {
   res.send("Bienvenue sur Les Restos des Gosses !");

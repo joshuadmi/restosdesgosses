@@ -1,0 +1,100 @@
+/* App.css */
+
+/* 1. Polices globales et reset basique */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+    background: #fffaf4; /* Blanc légèrement crème pour l'accueil */
+    color: #1c1c1c;
+    min-height: 100vh;
+  }
+  
+  /* 2. Couleurs de la charte graphique */
+  :root {
+    --main-orange: #FFA726;
+    --main-green: #6ABF69;
+    --main-grey: #F5F5F5;
+    --main-dark: #1C3D5A;
+  }
+  
+  /* 3. Titres */
+  h1, h2, h3 {
+    color: var(--main-dark);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 0;
+  }
+  
+  /* 4. Liens */
+  a {
+    color: var(--main-orange);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  a:hover {
+    color: var(--main-green);
+  }
+  
+  /* 5. Boutons */
+  button {
+    background: var(--main-orange);
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 0.7em 1.6em;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 8px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    transition: background 0.2s;
+  }
+  button:hover {
+    background: var(--main-green);
+  }
+  
+  /* 6. Inputs */
+  input, select, textarea {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 1em;
+    margin-bottom: 10px;
+    background: #fff;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--main-orange);
+  }
+  
+  /* 7. Listes */
+  ul {
+    padding-left: 1.2em;
+  }
+  
+  li {
+    margin-bottom: 1em;
+  }
+  
+  /* 8. Badge / Tag enfants */
+  .kids-tag {
+    display: inline-block;
+    background: #FFECB3;
+    color: #AF6F09;
+    border: 1px solid #F5C16C;
+    border-radius: 12px;
+    padding: 3px 12px;
+    font-size: 0.96em;
+    margin-right: 5px;
+    margin-bottom: 3px;
+  }
+  
+  /* 9. Mise en page générale */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 12px;
+  }
+  
+  
