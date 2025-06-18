@@ -75,20 +75,8 @@ export default function RestaurantPage() {
   }
 
   return (
-    <main style={{ maxWidth: 600, margin: "2rem auto" }}>
-      <button
-        onClick={() => navigate(-1)}
-        style={{
-          marginBottom: "1rem",
-          padding: "6px 12px",
-          backgroundColor: "#eee",
-          border: "1px solid #ccc",
-          borderRadius: "4px",
-          cursor: "pointer",
-        }}
-      >
-        ← Retour à la liste
-      </button>
+    <main>
+      <button onClick={() => navigate(-1)}>← Retour à la liste</button>
 
       {isEditing ? (
         <EditRestaurantForm
@@ -102,35 +90,21 @@ export default function RestaurantPage() {
       ) : (
         <>
           {user && (
-            <button
-              onClick={() => setIsEditing(true)}
-              style={{ marginBottom: "1rem" }}
-            >
+            <button onClick={() => setIsEditing(true)}>
               ✏️ Modifier ce restaurant
             </button>
           )}
 
           <h1>{resto.nom}</h1>
           {resto.valideAdmin ? (
-            <span style={{ color: "green", marginLeft: 8 }}>✔️ Vérifié</span>
+            <span>✔️ Vérifié</span>
           ) : (
-            <span style={{ color: "orange", marginLeft: 8 }}>⏳ À valider</span>
+            <span>⏳ À valider</span>
           )}
           {resto.images && resto.images.length > 0 && (
-            <div style={{ display: "flex", gap: 12, marginBottom: 12 }}>
+            <div>
               {resto.images.map((img, idx) => (
-                <img
-                  key={idx}
-                  src={img}
-                  alt={resto.nom}
-                  style={{
-                    width: 120,
-                    height: "auto",
-                    objectFit: "cover",
-                    borderRadius: 8,
-                    marginRight: 12,
-                  }}
-                />
+                <img key={idx} src={img} alt={resto.nom} />
               ))}
             </div>
           )}
@@ -160,21 +134,7 @@ export default function RestaurantPage() {
             <b>Tags kids friendly :</b>{" "}
             {resto.tagsKidsFriendly && resto.tagsKidsFriendly.length > 0
               ? resto.tagsKidsFriendly.map((tag) => (
-                  <span
-                    key={tag}
-                    style={{
-                      background: "#ffecb3",
-                      color: "#af6f09",
-                      padding: "2px 8px",
-                      borderRadius: "12px",
-                      fontSize: "0.95em",
-                      border: "1px solid #f5c16c",
-                      marginRight: 6,
-                      display: "inline-block",
-                    }}
-                  >
-                    {tag}
-                  </span>
+                  <span className="kids-tag" key={tag}>{tag}</span>
                 ))
               : "Aucun"}
           </div>

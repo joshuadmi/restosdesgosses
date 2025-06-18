@@ -115,7 +115,7 @@ export default function EditRestaurantForm({ resto, onCancel, onSave }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ margin: "1.5em 0" }}>
+    <form onSubmit={handleSubmit} >
       <div>
         <label>Nom :</label>
         <input name="nom" value={form.nom} onChange={handleChange} />
@@ -162,10 +162,11 @@ export default function EditRestaurantForm({ resto, onCancel, onSave }) {
       {/* Ajoute ici la sélection dynamique des tags */}
       <div>
         <label>Tags kids friendly :</label>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+        <div  >
           {allTags.map((tag) => (
-            <label key={tag} style={{ marginRight: "10px" }}>
+            <label className="kids-tag" key={tag} >
               <input
+              
                 type="checkbox"
                 checked={form.tagsKidsFriendly.includes(tag)}
                 onChange={() => handleTagChange(tag)}
@@ -182,9 +183,8 @@ export default function EditRestaurantForm({ resto, onCancel, onSave }) {
           {(form.images || []).map((img, i) => (
             <div
               key={i}
-              style={{ display: "flex", alignItems: "center", marginBottom: 5 }}
             >
-              <img src={img} alt="" width={80} style={{ marginRight: 8 }} />
+              <img src={img} alt="" width={80} />
               <button type="button" onClick={() => handleRemoveImage(img)}>
                 Supprimer
               </button>
@@ -196,20 +196,19 @@ export default function EditRestaurantForm({ resto, onCancel, onSave }) {
           accept="image/*"
           onChange={handleUploadImage}
           disabled={uploading}
-          style={{ marginTop: 8 }}
         />
         {uploading && (
-          <span style={{ marginLeft: 8 }}>⏳ Upload en cours...</span>
+          <span >⏳ Upload en cours...</span>
         )}
-        {uploadError && <div style={{ color: "red" }}>{uploadError}</div>}
+        {uploadError && <div >{uploadError}</div>}
       </div>
 
-      {error && <div style={{ color: "red" }}>{error}</div>}
+      {error && <div >{error}</div>}
 
       <button type="submit" disabled={loading}>
         💾 Sauvegarder
       </button>
-      <button type="button" onClick={onCancel} style={{ marginLeft: "1em" }}>
+      <button type="button" onClick={onCancel} >
         Annuler
       </button>
     </form>

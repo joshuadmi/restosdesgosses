@@ -27,7 +27,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <main style={{ maxWidth: 400, margin: "2rem auto", padding: "1rem" }}>
+    <main >
       <h1>Inscription</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -41,7 +41,7 @@ export default function RegisterPage() {
           />
         </label>
         <br />
-        <label style={{ marginTop: "1rem" }}>
+        <label >
           Email
           <input
             type="email"
@@ -52,7 +52,7 @@ export default function RegisterPage() {
           />
         </label>
         <br />
-        <label style={{ marginTop: "1rem" }}>
+        <label >
           Mot de passe
           <input
             type="password"
@@ -63,10 +63,10 @@ export default function RegisterPage() {
           />
         </label>
 
-        {error && <p style={{ color: "red", marginTop: "1rem" }}>{error}</p>}
+        {error && <p>{error}</p>}
         <br />
 
-        <button type="submit" disabled={loading} style={{ marginTop: "1rem" }}>
+        <button type="submit" disabled={loading} >
           {loading ? "Inscription…" : "S’inscrire"}
         </button>
       </form>

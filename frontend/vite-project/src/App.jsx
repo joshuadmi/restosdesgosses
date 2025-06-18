@@ -1,3 +1,4 @@
+import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./contexts/AuthContext";
 import LoginPage from "./pages/LoginPage";
@@ -7,7 +8,6 @@ import RestaurantPage from "./pages/RestaurantPage";
 import RestaurantList from "./pages/RestaurantList";
 import ModerationPage from "./pages/ModerationPage";
 import CreateRestaurantPage from "./pages/CreateRestaurantPage";
- import
 
 import Navbar from "./components/Navbar/Navbar";
 

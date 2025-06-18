@@ -30,11 +30,11 @@ export default function EditReview({ review, onUpdated, onDeleted }) {
 
   if (!editing) {
     return (
-      <li style={{ marginBottom: "1.5em" }}>
+      <li >
         <b>{review.auteur?.nom || "Utilisateur"}</b> : <b>{review.note}/5</b>
         <br />
         {review.commentaire}
-        
+
         {user && (review.auteur._id === user.id || review.auteur._id === user._id || review.auteur === user.id) && (
           <>
             <br />
@@ -50,7 +50,7 @@ export default function EditReview({ review, onUpdated, onDeleted }) {
 
   // Affichage du formulaire d'édition
   return (
-    <li style={{ marginBottom: "1.5em" }}>
+    <li >
       <form onSubmit={handleEdit}>
         <label>
           Note :{" "}
@@ -61,7 +61,7 @@ export default function EditReview({ review, onUpdated, onDeleted }) {
             value={note}
             onChange={e => setNote(Number(e.target.value))}
             required
-            style={{ width: 50 }}
+            
           />
         </label>
         <br />

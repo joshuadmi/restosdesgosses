@@ -1,3 +1,4 @@
+import "../Navbar/Navbar.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -8,18 +9,10 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <Link
-        to="/"
-        style={{
-          fontWeight: "bold",
-          color: "#76e460",
-          fontSize: "1.3rem",
-          marginRight: 20,
-        }}
-      >
-        Restos des Gosses
-      </Link>
-      <Link to="/restaurants" style={{ marginRight: 16 }}>
+          <img src="src/assets/logo.png" alt="Logo Les Restos des Gosses" />
+
+      <Link to="/">Restos des Gosses</Link>
+      <Link to="/restaurants">
         Restaurants
       </Link>
 
@@ -30,17 +23,17 @@ export default function Navbar() {
         </>
       ) : (
         <>
-          <Link to="/login" style={{ marginRight: 16 }}>
+          <Link to="/login" >
             Connexion
           </Link>
           <Link to="/register">Inscription</Link>
         </>
       )}
       {user && (user.role === "admin" || user.role === "super-user") && (
-  <button onClick={() => navigate("/moderation")}>
-    Gérer les validations
-  </button>
-)}
+        <button onClick={() => navigate("/moderation")}>
+          Gérer les validations
+        </button>
+      )}
     </nav>
   );
 }

@@ -23,13 +23,7 @@ a {
   color: inherit;
 }
 
-.navbar {
-  background: var(--pink);
-  color: var(--green);
-  font-weight: bold;
-  font-size: 1.4rem;
-  padding: 1rem;
-}
+
 
 .footer {
   background: var(--pink);
@@ -38,6 +32,7 @@ a {
   text-align: center;
   border-top: 1px solid var(--gray);
 }
+
 
 /* Responsive */
 @media (max-width: 600px) {

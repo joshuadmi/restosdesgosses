@@ -23,12 +23,12 @@ export default function ModerationPage() {
   };
 
   return (
-    <main style={{ maxWidth: 600, margin: "2rem auto" }}>
+    <main >
       <h1>Modération des fiches restaurants</h1>
       {restos.length === 0 && <p>Aucune fiche à valider 🎉</p>}
       <ul>
         {restos.map(resto => (
-          <li key={resto._id} style={{ borderBottom: "1px solid #eee", marginBottom: 18, paddingBottom: 10 }}>
+          <li key={resto._id} >
             <b>{resto.nom}</b> ({resto.ville})<br />
             {resto.adresse}<br />
             {resto.tagsKidsFriendly?.length > 0 && (

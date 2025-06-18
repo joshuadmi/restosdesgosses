@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
@@ -118,7 +119,7 @@ export default function CreateRestaurantPage() {
   };
 
   return (
-    <main style={{ maxWidth: 500, margin: "2rem auto", padding: "1rem" }}>
+    <main >
       <h1>Créer un restaurant</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -157,17 +158,12 @@ export default function CreateRestaurantPage() {
           {/* Affichage des suggestions d'adresses */}
           {suggestions.length > 0 && (
             <ul
-              style={{
-                border: "1px solid #ddd",
-                background: "#fff",
-                position: "absolute",
-                zIndex: 99,
-              }}
+             
             >
               {suggestions.map((s) => (
                 <li
                   key={s.properties.id}
-                  style={{ padding: "4px", cursor: "pointer" }}
+                  
                   onClick={() => handleSuggestionClick(s)}
                 >
                   {s.properties.label}
@@ -188,10 +184,11 @@ export default function CreateRestaurantPage() {
         <br />
         <div>
           <label>Critères kids friendly :</label>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+          <div >
             {allTags.map((tag) => (
-              <label key={tag}>
+              <label className="kids-tag" key={tag}>
                 <input
+                
                   type="checkbox"
                   checked={tagsKidsFriendly.includes(tag)}
                   onChange={() => handleTagChange(tag)}
@@ -262,8 +259,8 @@ export default function CreateRestaurantPage() {
         )}
 
         <br />
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit" disabled={loading} style={{ marginTop: "1rem" }}>
+        {error && <p >{error}</p>}
+        <button type="submit" disabled={loading} >
           {loading ? "Création en cours…" : "Créer"}
         </button>
       </form>

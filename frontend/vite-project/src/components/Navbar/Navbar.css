@@ -1,8 +1,64 @@
+/* Navbar.css */
+
 .navbar {
-    background: var(--pink);
-    color: var(--green);
-    font-weight: bold;
-    font-size: 1.4rem;
-    padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+  background: #7ED957;
+  padding: 0 32px;
+  height: 64px;
+  border-bottom: 1px solid var(--main-grey);
+  box-shadow: 0 2px 8px rgba(220, 220, 220, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Logo à gauche */
+.navbar img {
+  height: 6em;
+  width: auto;
+  margin-right: 20px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Liens du menu */
+.navbar a {
+  color: var(--main-dark);
+  font-size: 1.1em;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 12px;
+  transition: background 0.18s, color 0.18s;
+  margin-right: 4px;
+}
+
+.navbar a:hover,
+.navbar a:focus {
+  background: var(--main-orange);
+  color: #fff;
+}
+
+
+
+
+/* Responsive : empile le menu sur mobile */
+@media (max-width: 700px) {
+  .navbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 8px 12px;
+    gap: 12px;
   }
-  
+  .navbar img {
+    height: 34px;
+    margin-bottom: 6px;
+  }
+  .navbar a, .navbar button {
+    font-size: 1em;
+    padding: 8px 10px;
+  }
+}

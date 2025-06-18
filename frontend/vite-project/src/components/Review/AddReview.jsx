@@ -33,7 +33,7 @@ export default function AddReview({ restaurantId, onReviewAdded }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginTop: 16 }}>
+    <form onSubmit={handleSubmit} >
       <label>
         Note :
         <select value={note} onChange={(e) => setNote(Number(e.target.value))}>
@@ -54,11 +54,11 @@ export default function AddReview({ restaurantId, onReviewAdded }) {
         />
       </label>
       <br />
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p >{error}</p>}
       <button type="submit" disabled={loading}>
         {loading ? "Envoi en cours…" : "Laisser un avis"}
       </button>
-      {message && <p style={{ color: "green" }}>{message}</p>}
+      {message && <p >{message}</p>}
     </form>
   );
 }

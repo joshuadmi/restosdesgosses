@@ -1,3 +1,4 @@
+import "./RestaurantList.css";
 import React, { useEffect, useState } from "react";
 import { fetchRestaurants } from "../services/api";
 import { useNavigate } from "react-router-dom";
@@ -66,20 +67,25 @@ function Home() {
   };
 
   return (
-    <div>
-      <h1>Les restos kids-friendly</h1>
-      <input
-        type="text"
-        placeholder="Filtrer par ville (ex : Bayonne)"
-        value={villeQuery}
-        onChange={(e) => setVilleQuery(e.target.value)}
-        style={{ padding: "8px", margin: "10px 0", width: "250px" }}
-      />
-      <div>
-        <label>Critères kids friendly :</label>
-        <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+
+
+
+    <>
+    <div className="banner">
+      <h1>Les Restos du Gosse</h1>
+      <p>
+        Un espace commun pour les parents à la recherche de restaurants où les enfants sont les bienvenus ! Partagez vos bons plans, trouvez LE resto kids friendly et vivez de vrais moments en famille.
+      </p>
+      <div className="search-filters">
+        <input
+          type="text"
+          placeholder="Filtrer par ville (ex : Bayonne)"
+          value={villeQuery}
+          onChange={(e) => setVilleQuery(e.target.value)}
+        />
+        <div className="tags-list">
           {allTags.map((tag) => (
-            <label key={tag}>
+            <label className="kids-tag" key={tag}>
               <input
                 type="checkbox"
                 checked={selectedTags.includes(tag)}
@@ -90,55 +96,33 @@ function Home() {
           ))}
         </div>
       </div>
+    </div>
 
       {filteredRestaurants.length === 0 ? (
         <p>Aucun restaurant trouvé.</p>
       ) : (
-        <ul>
+        <ul className="restaurant-list">
           {filteredRestaurants.map((resto) => (
-            <li key={resto._id}>
+            <li className="restaurant-card " key={resto._id}>
               <div>
                 <h2>{resto.nom}</h2>
 
                 {resto.valideAdmin ? (
-                  <span style={{ color: "green", marginLeft: 8 }}>
-                    ✔️ Vérifié
-                  </span>
+                  <span>✔️ Vérifié</span>
                 ) : (
-                  <span style={{ color: "orange", marginLeft: 8 }}>
-                    ⏳ À valider
-                  </span>
+                  <span>⏳ À valider</span>
                 )}
 
                 {resto.tagsKidsFriendly &&
                   resto.tagsKidsFriendly.length > 0 && (
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "0.5rem",
-                        margin: "8px 0",
-                      }}
-                    >
+                    <div>
                       {resto.tagsKidsFriendly.map((tag) => (
-                        <span
-                          key={tag}
-                          style={{
-                            background: "#ffecb3",
-                            color: "#af6f09",
-                            padding: "3px 10px",
-                            borderRadius: "12px",
-                            fontSize: "0.95em",
-                            border: "1px solid #f5c16c",
-                            display: "inline-block",
-                          }}
-                        >
-                          {tag}
-                        </span>
+                        <span className="kids-tag" key={tag}>{tag}</span>
                       ))}
                     </div>
                   )}
 
-                <div style={{ margin: "10px 0" }}>
+                <div>
                   <b>Note moyenne :</b>{" "}
                   {resto.noteMoyenne
                     ? `${resto.noteMoyenne.toFixed(1)} / 5 (${
@@ -152,22 +136,11 @@ function Home() {
                 <p>{resto.description}</p>
 
                 {resto.images && resto.images.length > 0 && (
-                  <img
-                    src={resto.images[0]}
-                    alt={resto.nom}
-                    style={{
-                      width: 120,
-                      height: "auto",
-                      objectFit: "cover",
-                      borderRadius: 8,
-                      marginRight: 12,
-                    }}
-                  />
+                  <img src={resto.images[0]} alt={resto.nom} />
                 )}
               </div>
 
               <button
-                style={{ marginLeft: 20 }}
                 onClick={() => {
                   sessionStorage.setItem("scrollPosition", window.scrollY);
                   navigate(`/restaurants/${resto._id}`);
@@ -179,8 +152,10 @@ function Home() {
           ))}
         </ul>
       )}
-    </div>
+    </>
+      
   );
+  
 }
 
 export default Home;

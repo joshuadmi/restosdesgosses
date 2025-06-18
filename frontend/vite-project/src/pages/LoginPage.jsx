@@ -26,7 +26,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main style={{ maxWidth: 400, margin: '2rem auto', padding: '1rem' }}>
+    <main>
       <h1>Connexion</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -40,7 +40,7 @@ export default function LoginPage() {
           />
         </label>
 
-        <label style={{ marginTop: '1rem' }}>
+        <label >
           Mot de passe<br />
           <input
             type="password"
@@ -51,9 +51,9 @@ export default function LoginPage() {
           />
         </label>
 
-        {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
+        {error && <p >{error}</p>}
 
-        <button type="submit" disabled={loading} style={{ marginTop: '1rem' }}>
+        <button type="submit" disabled={loading} >
           {loading ? 'Connexion…' : 'Se connecter'}
         </button>
       </form>
