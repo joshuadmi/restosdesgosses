@@ -7,7 +7,6 @@ import RestaurantPage from "./pages/RestaurantPage";
 import RestaurantList from "./pages/RestaurantList";
 import ModerationPage from "./pages/ModerationPage";
 import CreateRestaurantPage from "./pages/CreateRestaurantPage";
- import
 
 import Navbar from "./components/Navbar/Navbar";
 
