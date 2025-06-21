@@ -22,16 +22,18 @@ export function AuthProvider({ children }) {
   const login = async (credentials) => {
     const { data } = await apiLogin(credentials);
     localStorage.setItem("token", data.token);
-    localStorage.setItem("user", JSON.stringify(data.user)); // 👈 Ajout
+    localStorage.setItem("user", JSON.stringify(data.user));
 
     setToken(data.token);
     setUser(data.user);
   };
 
   const register = async (details) => {
+    console.log("Register details:", details);
+  
     const { data } = await apiRegister(details);
     localStorage.setItem("token", data.token);
-    localStorage.setItem("user", JSON.stringify(data.user)); // 👈 Ajout
+    localStorage.setItem("user", JSON.stringify(data.user)); 
     setToken(data.token);
     setUser(data.user);
   };

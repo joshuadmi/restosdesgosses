@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
+import axios from "axios";
 
 export default function RegisterPage() {
   const { register } = useAuth();
@@ -9,15 +11,19 @@ export default function RegisterPage() {
   const [nom, setNom] = useState("");
   const [email, setEmail] = useState("");
   const [motDePasse, setMotDePasse] = useState("");
+  const [captcha, setCaptcha] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
+
     try {
-      await register({ nom, email, motDePasse });
+      await register({ nom, email, motDePasse, captcha });
       navigate("/"); // Redirige vers l’accueil une fois inscrit
     } catch (err) {
       setError(err.response?.data?.error || "Erreur inconnue");
@@ -27,7 +33,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <main >
+    <main>
       <h1>Inscription</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -41,7 +47,7 @@ export default function RegisterPage() {
           />
         </label>
         <br />
-        <label >
+        <label>
           Email
           <input
             type="email"
@@ -52,7 +58,7 @@ export default function RegisterPage() {
           />
         </label>
         <br />
-        <label >
+        <label>
           Mot de passe
           <input
             type="password"
@@ -66,7 +72,15 @@ export default function RegisterPage() {
         {error && <p>{error}</p>}
         <br />
 
-        <button type="submit" disabled={loading} >
+        <ReCAPTCHA
+          sitekey="6LfZvmgrAAAAABe4qzlpFRRoAUOItMSyq36T3do_"
+          onChange={setCaptcha}
+        />
+        <button type="submit" disabled={loading || !captcha}
+        style={{
+            cursor: loading || !captcha ? "not-allowed" : "pointer",
+            opacity: loading || !captcha ? 0.6 : 1,
+          }}>
           {loading ? "Inscription…" : "S’inscrire"}
         </button>
       </form>

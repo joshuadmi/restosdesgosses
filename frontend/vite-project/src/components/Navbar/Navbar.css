@@ -4,9 +4,9 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 24px;
+  gap: 14px;
   background: #7ED957;
-  padding: 0 32px;
+  padding:  15px;
   height: 64px;
   border-bottom: 1px solid var(--main-grey);
   box-shadow: 0 2px 8px rgba(220, 220, 220, 0.06);
@@ -17,7 +17,7 @@
 
 /* Logo à gauche */
 .navbar img {
-  height: 6em;
+  height: 92px;
   width: auto;
   margin-right: 20px;
   object-fit: contain;
@@ -38,7 +38,7 @@
 
 .navbar a:hover,
 .navbar a:focus {
-  background: var(--main-orange);
+  background: var(--main-pink);
   color: #fff;
 }
 
@@ -46,6 +46,7 @@
 
 
 /* Responsive : empile le menu sur mobile */
+
 @media (max-width: 700px) {
   .navbar {
     flex-wrap: wrap;
@@ -54,7 +55,7 @@
     gap: 12px;
   }
   .navbar img {
-    height: 34px;
+    height: 64px;
     margin-bottom: 6px;
   }
   .navbar a, .navbar button {

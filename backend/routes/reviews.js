@@ -1,4 +1,4 @@
-// routes/reviews.js
+
 import { Router } from 'express'
 import { addReview, getReviews, updateReview, deleteReview } from '../controllers/reviewController.js'
 import { protect } from '../middleware/authMiddleware.js'

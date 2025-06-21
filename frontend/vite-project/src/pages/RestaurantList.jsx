@@ -67,36 +67,41 @@ function Home() {
   };
 
   return (
-
-
-
     <>
-    <div className="banner">
-      <h1>Les Restos du Gosse</h1>
-      <p>
-        Un espace commun pour les parents à la recherche de restaurants où les enfants sont les bienvenus ! Partagez vos bons plans, trouvez LE resto kids friendly et vivez de vrais moments en famille.
-      </p>
-      <div className="search-filters">
-        <input
-          type="text"
-          placeholder="Filtrer par ville (ex : Bayonne)"
-          value={villeQuery}
-          onChange={(e) => setVilleQuery(e.target.value)}
-        />
-        <div className="tags-list">
-          {allTags.map((tag) => (
-            <label className="kids-tag" key={tag}>
-              <input
-                type="checkbox"
-                checked={selectedTags.includes(tag)}
-                onChange={() => handleTagCheckbox(tag)}
-              />
-              {tag}
-            </label>
-          ))}
+      <div className="banner">
+        <h1>
+          <span className="titre-yellow">Les</span>{" "}
+          <span className="titre-red">Restos</span>{" "}
+          <span className="titre-blue">des</span>{" "}
+          <span className="titre-green">Gosses</span>
+        </h1>
+
+        <p className="">
+          Un espace commun pour les parents à la recherche de restaurants où les
+          enfants sont les bienvenus! Partagez vos bons plans, trouvez LE resto
+          kids friendly et vivez de vrais moments en famille.
+        </p>
+        <div className="search-filters">
+          <input
+            type="text"
+            placeholder="Filtrer par ville (ex : Bayonne)"
+            value={villeQuery}
+            onChange={(e) => setVilleQuery(e.target.value)}
+          />
+          <div className="tags-list">
+            {allTags.map((tag) => (
+              <label className="kids-tag" key={tag}>
+                <input
+                  type="checkbox"
+                  checked={selectedTags.includes(tag)}
+                  onChange={() => handleTagCheckbox(tag)}
+                />
+                {tag}
+              </label>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
 
       {filteredRestaurants.length === 0 ? (
         <p>Aucun restaurant trouvé.</p>
@@ -117,7 +122,9 @@ function Home() {
                   resto.tagsKidsFriendly.length > 0 && (
                     <div>
                       {resto.tagsKidsFriendly.map((tag) => (
-                        <span className="kids-tag" key={tag}>{tag}</span>
+                        <span className="kids-tag" key={tag}>
+                          {tag}
+                        </span>
                       ))}
                     </div>
                   )}
@@ -153,9 +160,7 @@ function Home() {
         </ul>
       )}
     </>
-      
   );
-  
 }
 
 export default Home;

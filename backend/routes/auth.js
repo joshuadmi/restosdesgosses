@@ -1,19 +1,22 @@
 // routes/auth.js
-import { Router } from 'express'
-import { register, login } from '../controllers/authController.js'
+import verifyCaptcha from "../middleware/verifyCaptcha.js"; 
+import { Router } from "express";
+import {
+  validateRegisterUser,
+  validateLoginUser,
+} from "../middleware/authValidation.js";
+import validateRequest from "../middleware/validateRequest.js";
+import { register, login } from "../controllers/authController.js";
 
-const router = Router()
+const router = Router();
 
-// Inscription
-router.post('/register', register)
-
-// Connexion
-router.post('/login', login)
-
-
+router.post("/register", verifyCaptcha, validateRegisterUser, validateRequest, register);
+router.post("/login", verifyCaptcha, validateLoginUser, validateRequest, login);
 // juste pour tester qu’il monte correctement
-router.get('/', (req, res) => {
-  res.json({ message: 'Auth route OK' })
-})
+router.get("/", (req, res) => {
+  res.json({ message: "Auth route OK" });
+});
 
-export default router
+
+
+export default router;

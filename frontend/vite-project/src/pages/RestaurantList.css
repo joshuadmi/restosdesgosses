@@ -6,15 +6,16 @@
   }
 
 .restaurant-card {
-    background: #fff;
-    border: 1px solid var(--main-grey);
+    flex: 1 1 calc(33.333% - 40px); /* Three cards per row with space */
+    background: #ff9cef7f;
+    border: 1px solid #D9D9D9;
     border-radius: 18px;
     padding: 20px;
-    margin-bottom: 22px;
+    margin: 10px 20px 10px 20px; 
     box-shadow: 0 2px 8px rgba(230, 180, 255, 0.07);
     display: flex;
     align-items: flex-start;
-    gap: 20px;
+    gap: 20px; /* Space between image and text */
     transition: box-shadow 0.18s, transform 0.15s;
   }
   
@@ -29,7 +30,7 @@
     object-fit: cover;
     border-radius: 12px;
     margin-right: 18px;
-    border: 1px solid var(--main-grey);
+    border: 1px solid #D9D9D9;
   }
   
   .restaurant-card h2 {
@@ -48,12 +49,12 @@
   
   
   .restaurant-card button {
-    background: var(--main-orange);
+    background: #FFD93D;
     color: #fff;
     border: none;
     border-radius: 18px;
     padding: 7px 16px;
-    font-size: 1em;
+    font-size: 1.5em;
     font-weight: 500;
     cursor: pointer;
     margin-left: 24px;
@@ -61,6 +62,6 @@
     transition: background 0.18s;
   }
   .restaurant-card button:hover {
-    background: var(--main-green);
+    background: #7ED957;
   }
   

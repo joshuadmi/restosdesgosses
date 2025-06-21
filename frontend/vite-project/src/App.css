@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap');
+
+
 /* 2. Couleurs de la charte graphique */
 :root {
   --main-orange: #FFD93D;
@@ -8,22 +11,28 @@
   --main-blue: #6EC1E4;
   --main-pink: #FF9CEE;
 }
+
+.titre-yellow { color: #FFD93D; }  /* ou #FFD93D */
+.titre-red    { color: #FF5E5B; }  /* ou #FF5E5B */
+.titre-blue   { color: #6EC1E4; }  /* ou #6EC1E4 */
+.titre-green  { color: #7ED957; }  /* ou #7ED957 */
+
 /* App.css */
 
 /* 1. Polices globales et reset basique */
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
-    background: #fffaf4; /* Blanc légèrement crème pour l'accueil */
-    color: #1c1c1c;
-    min-height: 100vh;
-  }
+  font-family: 'Baloo 2', Arial, sans-serif;
+  background: #fffaf4;
+  color: #1c1c1c;
+  margin: 0;
+  padding: 0;
+}
   
   
   /* 3. Titres */
   h1, h2, h3 {
-    color: var(--main-dark);
+    color: #444444;
     font-weight: 600;
     letter-spacing: 0.5px;
     margin-top: 0;
@@ -31,18 +40,18 @@ body {
   
   /* 4. Liens */
   a {
-    color: var(--main-orange);
+    color: #FFD93D;
     text-decoration: none;
     transition: color 0.2s;
   }
   a:hover {
-    color: var(--main-green);
+    color: #7ED957;
   }
   
   /* 5. Boutons */
   button {
-    background: var(--main-blue);
-    color: #fff;
+    background: #6EC1E4;
+    color: #444444;
     border: none;
     border-radius: 24px;
     padding: 0.7em 1.6em;
@@ -51,22 +60,33 @@ body {
     cursor: pointer;
     margin: 8px 0;
     box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    transition: background 0.2s;
+    transition: background 0.2s; 
   }
   button:hover {
-    background: var(--main-pink);
+    background: #FF9CEE;
   }
   
 /* Images */
 
 
 img{
-    width: 120px;
-    height: "auto";
-    object-fit: cover;
-    border-radius: 10px;
-  }
+  width: 120px;
+  height: "auto";
+  object-fit: cover;
+  border-radius: 10px;
+}
 
+form {
+  background: #fff;
+  padding: 30px 22px;
+  border-radius: 18px;
+  box-shadow: 0 2px 10px rgba(220, 180, 255, 0.07);
+  max-width: 480px;
+  margin: 28px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
   /* 6. Inputs */
   input, select, textarea {
     border: 1px solid #ddd;
@@ -78,7 +98,7 @@ img{
   }
   
   input:focus, textarea:focus, select:focus {
-    outline: 2px solid var(--main-orange);
+    outline: 2px solid #FFD93D;
   }
   
   /* 7. Listes */
@@ -93,9 +113,9 @@ img{
   /* 8. Badge / Tag enfants */
   .kids-tag {
     display: inline-block;
-    background: #FFECB3;
+    background: #ffd83d89;
     color: #AF6F09;
-    border: 1px solid #F5C16C;
+    border: 1px solid #ffcd03;
     border-radius: 12px;
     padding: 3px 12px;
     font-size: 0.96em;
@@ -109,5 +129,19 @@ img{
     margin: 0 auto;
     padding: 24px 12px;
   }
+
   
-  
+  .footer {
+    background: var(--pink);
+    color: var(--black);
+    padding: 1rem;
+    text-align: center;
+    border-top: 1px solid var(--gray);
+  }
+  /* Responsive */
+@media (max-width: 600px) {
+  .navbar, .footer {
+    font-size: 1rem;
+    padding: 0.7rem;
+  }
+}
