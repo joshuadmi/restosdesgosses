@@ -26,7 +26,7 @@ export const protect = async (req, res, next) => {
 
 export const adminCheck = async (req, res, next) => {
   try {
-      if(req.user.role === "admin"){
+      if(req.user.role === "admin" || req.user.role === "super-user"){
           next();
       }else{
         return res.status(401).json({ message: `Vous n'êtes pas admin` })  

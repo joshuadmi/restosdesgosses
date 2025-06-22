@@ -7,8 +7,8 @@ export const validateRegisterUser = [
     .trim()
     .notEmpty()
     .withMessage("Le nom est obligatoire")
-    .isLength({ min: 3, max: 10 })
-    .withMessage("Le nom doit avoir entre 3 et 10 caractères"),
+    .isLength({ min: 3, max: 20 })
+    .withMessage("Le nom doit avoir entre 3 et 20 caractères"),
   body("email")
     .trim()
     .notEmpty()
@@ -19,8 +19,8 @@ export const validateRegisterUser = [
     .trim()
     .notEmpty()
     .withMessage("Mot de passe manquant")
-    .isLength({ min: 8, max: 200 })
-    .withMessage("Le mot de passe doit contenir entre 8 et 200 caractères"),
+    .isLength({ min: 4, max: 20 })
+    .withMessage("Le mot de passe doit contenir entre 4 et 20 caractères"),
 ];
 
 // Validation pour la connexion

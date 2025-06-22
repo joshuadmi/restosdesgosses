@@ -1,0 +1,51 @@
+.restaurant-page {
+  max-width: 650px;
+  margin: 20px auto;
+  background: #eee;
+  border-radius: 18px;
+  padding: 24px 18px;
+  gap: 5px;
+}
+
+.restaurant-page p {
+  font-size: 1.1em;
+  line-height: 1.4;
+  
+}
+
+/* Espace entre les boutons */
+.button-restaurant-page {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Images du resto */
+.restaurant-page img {
+  width: 45%;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #fff;
+}
+
+.restaurant-img-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-right: 10px;
+  gap: 10px;
+}
+
+/* Responsive simple */
+@media (max-width: 700px) {
+  .restaurant-page {
+    padding: 10px 2vw;
+    gap: 9px;
+  }
+  .restaurant-page img {
+    width: 95vw;
+    max-width: 220px;
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+}

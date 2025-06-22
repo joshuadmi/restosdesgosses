@@ -27,7 +27,12 @@ export default function LoginPage() {
 
   return (
     <main>
-      <h1>Connexion</h1>
+      <h1 className='colored-title'>
+          <span className="titre-red">Co</span>{""}
+          <span className="titre-yellow">nn</span>{""}
+          <span className="titre-blue">ex</span>{""}
+          <span className="titre-green">ion</span>
+        </h1>
       <form onSubmit={handleSubmit}>
         <label>
           Email<br />
@@ -51,7 +56,7 @@ export default function LoginPage() {
           />
         </label>
 
-        {error && <p >{error}</p>}
+        {error && <p className='error'>{error}</p>}
 
         <button type="submit" disabled={loading} >
           {loading ? 'Connexion…' : 'Se connecter'}

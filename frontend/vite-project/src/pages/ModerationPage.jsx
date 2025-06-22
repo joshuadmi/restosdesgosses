@@ -25,7 +25,7 @@ export default function ModerationPage() {
   return (
     <main >
       <h1>Modération des fiches restaurants</h1>
-      {restos.length === 0 && <p>Aucune fiche à valider 🎉</p>}
+      {restos.length === 0 && <p>Aucune fiche à valider, pour l'instant...</p>}
       <ul>
         {restos.map(resto => (
           <li key={resto._id} >

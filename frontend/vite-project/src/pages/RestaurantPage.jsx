@@ -1,10 +1,11 @@
+import "./RestaurantPage.css";
 import { useParams } from "react-router-dom";
 import AddReview from "../components/Review/AddReview";
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import EditRestaurantForm from "../components/Restaurant/EditRestaurantForm";
+import EditRestaurantForm from "./EditRestaurantForm";
 import EditReview from "../components/Review/EditReview"; // NOUVEAU
 
 export default function RestaurantPage() {
@@ -75,8 +76,15 @@ export default function RestaurantPage() {
   }
 
   return (
-    <main>
-      <button onClick={() => navigate(-1)}>← Retour à la liste</button>
+    <main className="restaurant-page">
+      <div className="button-restaurant-page">
+        <button onClick={() => navigate(-1)}>Retour à la liste</button>
+        {user && (
+          <button onClick={() => setIsEditing(true)}>
+      Modifier ce restaurant
+          </button>
+        )}
+      </div>
 
       {isEditing ? (
         <EditRestaurantForm
@@ -89,20 +97,14 @@ export default function RestaurantPage() {
         />
       ) : (
         <>
-          {user && (
-            <button onClick={() => setIsEditing(true)}>
-              ✏️ Modifier ce restaurant
-            </button>
-          )}
-
           <h1>{resto.nom}</h1>
           {resto.valideAdmin ? (
-            <span>✔️ Vérifié</span>
+            <span className="badge-verified">Vérifié</span>
           ) : (
-            <span>⏳ À valider</span>
+            <span className="badge-not-verified">À valider</span>
           )}
           {resto.images && resto.images.length > 0 && (
-            <div>
+            <div className="restaurant-img-card">
               {resto.images.map((img, idx) => (
                 <img key={idx} src={img} alt={resto.nom} />
               ))}
@@ -130,11 +132,13 @@ export default function RestaurantPage() {
             {resto.prixMoyen ? `${resto.prixMoyen} €` : "Non renseigné"}
           </p>
 
-          <div>
-            <b>Tags kids friendly :</b>{" "}
+          <div className="tags-list">
+            <b>Critères kids friendly:</b>{" "}
             {resto.tagsKidsFriendly && resto.tagsKidsFriendly.length > 0
               ? resto.tagsKidsFriendly.map((tag) => (
-                  <span className="kids-tag" key={tag}>{tag}</span>
+                  <span className="kids-tag" key={tag}>
+                    {tag}
+                  </span>
                 ))
               : "Aucun"}
           </div>

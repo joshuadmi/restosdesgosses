@@ -1,4 +1,29 @@
 .footer {
-  background: var(--pink);
-  color: var(--black);
+  background: #7ed957;
+  color: #222;
+  text-align: center;
+  padding: 1.2em 0 1em 0;
 }
+
+.footer a {
+  color: #444444;
+  font-size: 1.1em;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 12px;
+}
+
+.footer a:hover {
+  background: #ff9cee;
+  color: #fff;
+}
+
+@media (max-width: 700px) {
+  .footer a {
+    display: block;
+    margin: 5px auto;
+    font-size: 1em;
+  }
+}
+

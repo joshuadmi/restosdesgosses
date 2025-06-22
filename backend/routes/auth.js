@@ -11,7 +11,7 @@ import { register, login } from "../controllers/authController.js";
 const router = Router();
 
 router.post("/register", verifyCaptcha, validateRegisterUser, validateRequest, register);
-router.post("/login", verifyCaptcha, validateLoginUser, validateRequest, login);
+router.post("/login", validateLoginUser, validateRequest, login);
 // juste pour tester qu’il monte correctement
 router.get("/", (req, res) => {
   res.json({ message: "Auth route OK" });

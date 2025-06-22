@@ -6,8 +6,7 @@ import { validationResult } from "express-validator";
  * Middleware générique pour gérer les erreurs de validation express-validator
  */
 const validateRequest = (req, res, next) => {
-    
-    console.log("validateRequest appelé");
+
 
   const errors = validationResult(req);
 

@@ -9,31 +9,34 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-          <img src="src/assets/logo.png" alt="Logo Les Restos des Gosses" />
+      <div className="navbar-left">
+        <img src="src/assets/logo.png" alt="Logo Les Restos des Gosses" />
 
-      <Link to="/">Restos des Gosses</Link>
-      <Link to="/restaurants">
-        Restaurants
-      </Link>
+        <Link to="/">Accueil</Link>
+      </div>
 
-      {user ? (
-        <>
-          <Link to="/restaurants/new">Ajouter un resto</Link>
-          <button onClick={logout}>Déconnexion</button>
-        </>
-      ) : (
-        <>
-          <Link to="/login" >
-            Connexion
-          </Link>
-          <Link to="/register">Inscription</Link>
-        </>
-      )}
-      {user && (user.role === "admin" || user.role === "super-user") && (
-        <button onClick={() => navigate("/moderation")}>
-          Gérer les validations
-        </button>
-      )}
+      <div className="navbar-right">
+        {user ? (
+          <>
+            <Link to="/restaurants/new">Ajouter restaurant</Link>
+            <Link to="/mon-compte">Mon compte</Link>
+            <button onClick={logout}>Déconnexion</button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Connexion</Link>
+            <Link to="/register">Inscription</Link>
+          </>
+        )}
+        {user && (user.role === "admin" || user.role === "super-user") && (
+          <button
+            className="moderation"
+            onClick={() => navigate("/moderation")}
+          >
+            Gérer les validations
+          </button>
+        )}
+      </div>
     </nav>
   );
 }

@@ -119,8 +119,12 @@ export default function CreateRestaurantPage() {
   };
 
   return (
-    <main >
-      <h1>Créer un restaurant</h1>
+    <main className="create-restaurant-page">
+      <h1 className="colored-title">
+          <span className="titre-red">Ajouter</span>{" "}
+          <span className="titre-blue">un</span>{" "}
+          <span className="titre-green">Restaurant</span>
+        </h1>
       <form onSubmit={handleSubmit}>
         <label>
           Nom

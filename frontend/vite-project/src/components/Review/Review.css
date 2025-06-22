@@ -1,0 +1,11 @@
+
+.not-connected-message {
+  display: flex;
+  flex-direction: column;
+  color: #FF5E5B ;
+  font-size: 1.3em;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+}

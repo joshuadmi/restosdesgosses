@@ -1,3 +1,4 @@
+import "./Review.css";
 import { useState } from "react";
 import api from "../../services/api";
 import { useAuth } from "../../contexts/AuthContext";
@@ -11,7 +12,7 @@ export default function AddReview({ restaurantId, onReviewAdded }) {
   const [message, setMessage] = useState("");
 
   if (!user) {
-    return <p>Connecte-toi pour laisser un avis.</p>;
+    return <p className="not-connected-message">Connectez-vous pour laisser un avis.</p>;
   }
 
   const handleSubmit = async (e) => {
