@@ -28,16 +28,15 @@ function Home() {
     new Set(restaurants.flatMap((r) => r.tagsKidsFriendly || []))
   );
 
-  // Filtrer les restos selon la ville tapée (insensible à la casse)
   useEffect(() => {
+    
+    // filtrer les etablissements
     let filtered = restaurants;
-    // Filtrage par ville
     if (villeQuery.trim()) {
       filtered = filtered.filter((r) =>
         (r.ville || "").toLowerCase().includes(villeQuery.trim().toLowerCase())
       );
     }
-    // Filtrage par tags
     if (selectedTags.length > 0) {
       filtered = filtered.filter((r) =>
         selectedTags.every((tag) => (r.tagsKidsFriendly || []).includes(tag))
@@ -46,8 +45,6 @@ function Home() {
     setFilteredRestaurants(filtered);
   }, [villeQuery, selectedTags, restaurants]);
 
-  // Restaure la position de scroll après chargement
-  // cette fonction est appelée après le chargement des données grace à useEffect et à la dépendance `loading` et `restaurants`
   useEffect(() => {
     if (!loading && restaurants.length > 0) {
       const scroll = sessionStorage.getItem("scrollPosition");
@@ -116,9 +113,7 @@ function Home() {
                 {resto.valideAdmin ? (
                   <span className="badge-verified">Vérifié par l'équipe!</span>
                 ) : (
-                  <span className="badge-not-verified">
-                    À valider 
-                  </span>
+                  <span className="badge-not-verified">À valider</span>
                 )}
 
                 {resto.tagsKidsFriendly &&
@@ -140,9 +135,7 @@ function Home() {
                       } avis)`
                     : "Pas encore noté"}
                 </div>
-                <p>
-                  {resto.adresse}, {resto.ville}
-                </p>
+                <p>{resto.adresse}</p>
                 <p>{resto.description}</p>
 
                 {resto.images && resto.images.length > 0 && (

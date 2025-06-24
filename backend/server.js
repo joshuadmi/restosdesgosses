@@ -1,4 +1,3 @@
-// server.js (version moderne)
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -14,7 +13,6 @@ const app = express();
 dotenv.config();
 console.log("RECAPTCHA_SECRET loaded:", process.env.RECAPTCHA_SECRET);
 
-// Connexion à la base de données
 connectDB();
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(` Le serveur des gosses tourne sur le port ${PORT}`));
@@ -22,7 +20,6 @@ app.listen(PORT, () => console.log(` Le serveur des gosses tourne sur le port ${
 app.use(cors());
 app.use(express.json());
 
-// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/restaurants", restaurantRoutes);

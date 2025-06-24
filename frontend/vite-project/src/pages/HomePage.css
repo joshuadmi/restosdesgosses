@@ -6,7 +6,7 @@
 }
 
 .restaurant-card {
-  flex: 1 1 calc(33.333% - 40px); /* Three cards per row with space */
+  flex: 1 1 calc(33.333% - 40px); 
   background: #ff9cef7f;
   border: 3px solid #ff9cef7f;
   border-radius: 18px;
@@ -15,7 +15,7 @@
   box-shadow: 0 2px 8px #462b42d3;
   display: flex;
   align-items: flex-start;
-  gap: 10px; /* Space between image and text */
+  gap: 10px; 
   transition: box-shadow 0.18s, transform 0.15s;
 }
 

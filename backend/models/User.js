@@ -28,14 +28,13 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// Hachage du mot de passe 
+// mot de passe
 userSchema.pre('save', async function (next) {
   if (!this.isModified('motDePasse')) return next();
   const salt = await bcrypt.genSalt(10);
   this.motDePasse = await bcrypt.hash(this.motDePasse, salt);
   next();
 });
-// comparaison de mot de passe
 userSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.motDePasse);
 };

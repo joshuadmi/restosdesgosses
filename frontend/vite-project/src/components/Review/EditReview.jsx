@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "../../services/api";
-import { useAuth } from "../../contexts/AuthContext"; // adapte ce chemin si besoin
+import { useAuth } from "../../contexts/AuthContext"; 
 
 export default function EditReview({ review, onUpdated, onDeleted }) {
   const [editing, setEditing] = useState(false);
@@ -8,7 +8,6 @@ export default function EditReview({ review, onUpdated, onDeleted }) {
   const [commentaire, setCommentaire] = useState(review.commentaire);
   const { user } = useAuth();
 
-  // Mise à jour de l'avis
   const handleEdit = async (e) => {
     e.preventDefault();
     await api.put(`/reviews/edit/${review._id}`, { note, commentaire });
@@ -16,16 +15,12 @@ export default function EditReview({ review, onUpdated, onDeleted }) {
     if (onUpdated) onUpdated();
   };
 
-  // Suppression de l'avis
   const handleDelete = async () => {
     if (window.confirm("Supprimer cet avis ?")) {
       await api.delete(`/reviews/delete/${review._id}`);
       if (onDeleted) onDeleted();
     }
   };
-
-  
-  // Affichage normal ou mode édition
   
 
   if (!editing) {
@@ -48,7 +43,6 @@ export default function EditReview({ review, onUpdated, onDeleted }) {
 
   console.log("User et Review:", user, review);
 
-  // Affichage du formulaire d'édition
   return (
     <li >
       <form onSubmit={handleEdit}>

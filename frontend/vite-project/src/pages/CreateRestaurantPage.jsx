@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
@@ -35,7 +34,7 @@ export default function CreateRestaurantPage() {
     );
   };
 
-  // Appel à l’API adresse à chaque frappe (optimise avec un debounce pour éviter trop d’appels !)
+  // auto completion adresse ici
   const handleAdresseChange = async (e) => {
     const value = e.target.value;
     setAdresse(value);
@@ -54,8 +53,8 @@ export default function CreateRestaurantPage() {
   };
   const handleSuggestionClick = (suggestion) => {
     setAdresse(suggestion.properties.label);
-    setVille(suggestion.properties.city || ""); // récupère la ville depuis l'API
-    setPostalCode(suggestion.properties.postcode || ""); // récupère le code postal
+    setVille(suggestion.properties.city || "");
+    setPostalCode(suggestion.properties.postcode || "");
     setSuggestions([]);
   };
   const handleSubmit = async (e) => {
@@ -66,7 +65,7 @@ export default function CreateRestaurantPage() {
       let uploadedUrls = [];
       if (images.length > 0) {
         uploadedUrls = await uploadImagesToCloudinary();
-        setImageUrls(uploadedUrls); // si tu veux les afficher après
+        setImageUrls(uploadedUrls); 
       }
 
       await api.post("/restaurants", {
@@ -82,7 +81,7 @@ export default function CreateRestaurantPage() {
         prixMoyen,
         images: uploadedUrls,
       });
-      navigate("/restaurants");
+      navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || "Erreur lors de la création");
     } finally {
@@ -94,7 +93,6 @@ export default function CreateRestaurantPage() {
     const files = [...e.target.files];
     setImages(files);
 
-    // Crée des URLs pour aperçu local
     const previews = files.map((file) => URL.createObjectURL(file));
     setImagePreviews(previews);
   };
@@ -104,7 +102,7 @@ export default function CreateRestaurantPage() {
     for (let i = 0; i < images.length; i++) {
       const formData = new FormData();
       formData.append("file", images[i]);
-      formData.append("upload_preset", "restos_gosse"); 
+      formData.append("upload_preset", "restos_gosse");
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/test-niveau2/image/upload",
         {
@@ -113,7 +111,7 @@ export default function CreateRestaurantPage() {
         }
       );
       const data = await res.json();
-      urls.push(data.secure_url); // ou data.url
+      urls.push(data.secure_url);
     }
     return urls;
   };
@@ -121,10 +119,10 @@ export default function CreateRestaurantPage() {
   return (
     <main className="create-restaurant-page">
       <h1 className="colored-title">
-          <span className="titre-red">Ajouter</span>{" "}
-          <span className="titre-blue">un</span>{" "}
-          <span className="titre-green">Restaurant</span>
-        </h1>
+        <span className="titre-red">Ajouter</span>{" "}
+        <span className="titre-blue">un</span>{" "}
+        <span className="titre-green">Restaurant</span>
+      </h1>
       <form onSubmit={handleSubmit}>
         <label>
           Nom
@@ -159,15 +157,11 @@ export default function CreateRestaurantPage() {
             placeholder="Code postal"
             hidden
           />
-          {/* Affichage des suggestions d'adresses */}
           {suggestions.length > 0 && (
-            <ul
-             
-            >
+            <ul>
               {suggestions.map((s) => (
                 <li
                   key={s.properties.id}
-                  
                   onClick={() => handleSuggestionClick(s)}
                 >
                   {s.properties.label}
@@ -188,11 +182,10 @@ export default function CreateRestaurantPage() {
         <br />
         <div>
           <label>Critères kids friendly :</label>
-          <div >
+          <div>
             {allTags.map((tag) => (
               <label className="kids-tag" key={tag}>
                 <input
-                
                   type="checkbox"
                   checked={tagsKidsFriendly.includes(tag)}
                   onChange={() => handleTagChange(tag)}
@@ -230,7 +223,7 @@ export default function CreateRestaurantPage() {
               type="tel"
               value={telephone}
               onChange={(e) => setTelephone(e.target.value)}
-              placeholder="06 00 00 00 00"
+              placeholder="07 00 00 00 00"
             />
           </label>
           <br />
@@ -241,7 +234,7 @@ export default function CreateRestaurantPage() {
               type="number"
               value={prixMoyen}
               onChange={(e) => setPrixMoyen(e.target.value)}
-              placeholder="ex : 15"
+              placeholder="ex: 15"
               min={0}
             />
           </label>
@@ -263,8 +256,8 @@ export default function CreateRestaurantPage() {
         )}
 
         <br />
-        {error && <p >{error}</p>}
-        <button type="submit" disabled={loading} >
+        {error && <p>{error}</p>}
+        <button type="submit" disabled={loading}>
           {loading ? "Création en cours…" : "Créer"}
         </button>
       </form>

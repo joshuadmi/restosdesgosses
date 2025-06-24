@@ -1,9 +1,8 @@
-/* Navbar.css */
 
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Sépare gauche et droite */
+  justify-content: space-between; 
   background: #7ed957;
   padding: 15px;
   height: 64px;
@@ -13,16 +12,16 @@
   z-index: 10;
 }
 
-/* Bloc gauche */
 .navbar-left {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-/* Bloc droit */
 .navbar-right {
   display: flex;
+  align-items: center;
+
   gap: 5px;
 }
 
@@ -34,7 +33,7 @@
   display: block;
 }
 
-/* Liens du menu */
+/* les Link */
 .navbar a {
   font-size: 1.5em;
   color: #444444;
@@ -57,7 +56,7 @@
 
 @media (max-width: 700px) {
   .navbar img {
-    height: 4em; /* ou même 32px si besoin */
+    height: 4em; 
     width: auto;
   }
   .navbar {

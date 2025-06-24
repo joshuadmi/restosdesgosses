@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-// Liste des tags pour les restaurants kids-friendly. LEs modifications sont faites ici
+// tableau kids-friendly. LEs modifications sont faites ici !
 export const TAGS_KIDS = [
   "chaise haute",
   "menu enfant",
@@ -8,7 +8,6 @@ export const TAGS_KIDS = [
   "coin coloriage",
   "micro-ondes",
   "table à langer",
-  "autre",
 ];
 const restaurantSchema = new mongoose.Schema(
   {

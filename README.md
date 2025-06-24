@@ -1,4 +1,5 @@
 Contexte et objectifs
+
 Offrir une plateforme fiable permettant aux parents de trouver et recommander des restaurants adaptés aux enfants en bas âge.
 
 Permettre de noter, commenter, filtrer les établissements selon des critères « kids friendly » (chaise haute, espace jeux, etc.)

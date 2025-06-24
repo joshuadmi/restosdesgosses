@@ -1,4 +1,5 @@
 import "../Navbar/Navbar.css";
+import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +11,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <img src="src/assets/logo.png" alt="Logo Les Restos des Gosses" />
+        <img src={logo} alt="Logo Les Restos des Gosses" />
 
         <Link to="/">Accueil</Link>
       </div>

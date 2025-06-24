@@ -17,7 +17,7 @@ export default function LoginPage() {
     setLoading(true)
     try {
       await login({ email, motDePasse })
-      navigate('/') // redirige vers la homepage
+      navigate('/') 
     } catch (err) {
       setError(err.response?.data?.error || 'Erreur inconnue')
     } finally {

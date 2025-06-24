@@ -1,8 +1,7 @@
-// controllers/restaurantController.js
-
 import Restaurant from "../models/Restaurant.js";
+import Review from "../models/Review.js";
 
-// récupération des restos avec filtrage
+// filtrage restos
 export async function getAllRestaurants(req, res) {
   try {
     const filtre = {};
@@ -34,7 +33,7 @@ export async function createRestaurant(req, res) {
   try {
     const data = {
       ...req.body,
-      auteur: req.user._id, // on récupère l'ID de l'utilisateur connecté
+      auteur: req.user._id,
     };
     const newRestaurant = new Restaurant(data);
     const savedRestaurant = await newRestaurant.save();
@@ -47,7 +46,6 @@ export async function createRestaurant(req, res) {
 
 export async function validerRestaurant(req, res) {
   try {
-    // Tu peux vérifier ici le rôle de l'utilisateur (optionnel)
     const resto = await Restaurant.findByIdAndUpdate(
       req.params.id,
       { valideAdmin: true },
@@ -62,7 +60,6 @@ export async function validerRestaurant(req, res) {
     res.status(500).json({ message: "Erreur serveur" });
   }
 }
-
 
 export async function updateRestaurant(req, res) {
   try {
@@ -87,6 +84,9 @@ export async function deleteRestaurant(req, res) {
     if (!deletedRestaurant) {
       return res.status(404).json({ message: "Restaurant non trouvé" });
     }
+
+    await Review.deleteMany({ restaurant: req.params.id });
+
     res.json({ message: "Restaurant supprimé" });
   } catch (error) {
     console.error(error);

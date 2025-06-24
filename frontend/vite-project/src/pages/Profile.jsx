@@ -8,15 +8,12 @@ export default function Profile() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  // Pour changer le mot de passe
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [pwMessage, setPwMessage] = useState("");
 
-  // Récupérer le token (à adapter selon ton système)
   const token = localStorage.getItem("token");
 
-  // Charger les infos utilisateur au chargement
   useEffect(() => {
     api
     .get("/users/me")
@@ -27,7 +24,8 @@ export default function Profile() {
       });
   }, [token]);
 
-  // Soumettre les modifications de profil
+
+  
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -42,7 +40,6 @@ export default function Profile() {
     }
   };
 
-  // Changer le mot de passe
   const handlePasswordChange = async (e) => {
     e.preventDefault();
     try {
@@ -57,19 +54,17 @@ export default function Profile() {
     }
   };
 
-  // Supprimer le compte
   const handleDelete = async () => {
     if (!window.confirm("Supprimer définitivement votre compte ?")) return;
     try {
       await api.delete("/users/me", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      // Déconnexion et redirection (à adapter)
       localStorage.removeItem("token");
       window.location.href = "/";
     } catch (err) {
       alert("Erreur lors de la suppression du compte");
-      console.error(err); // Pour debug
+     
 
     }
   };

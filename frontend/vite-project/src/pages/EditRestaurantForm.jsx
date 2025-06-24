@@ -13,7 +13,6 @@ export default function EditRestaurantForm({ resto, onCancel, onSave }) {
     tagsKidsFriendly: [],
     images: [], 
 
-    // Ajoute d'autres champs si besoin !
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -26,7 +25,6 @@ export default function EditRestaurantForm({ resto, onCancel, onSave }) {
   const UPLOAD_PRESET = "restos_gosse";
 
 
-  // Fonction pour uploader une image sur Cloudinary
   const handleUploadImage = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -65,7 +63,6 @@ export default function EditRestaurantForm({ resto, onCancel, onSave }) {
     }));
   };
 
-  // Pré-remplir le formulaire avec les données actuelles
   useEffect(() => {
     if (resto) {
       setForm({
@@ -78,7 +75,6 @@ export default function EditRestaurantForm({ resto, onCancel, onSave }) {
         prixMoyen: resto.prixMoyen || "",
         tagsKidsFriendly: resto.tagsKidsFriendly || [],
         images: resto.images ? [...resto.images] : [],
-        // Ajoute ici les autres champs à préremplir
       });
       api
         .get("/restaurants/tags")
@@ -91,7 +87,6 @@ export default function EditRestaurantForm({ resto, onCancel, onSave }) {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Ajoute/enlève un tag dans le tableau tagsKidsFriendly
   const handleTagChange = (tag) => {
     setForm((prev) => ({
       ...prev,
@@ -159,7 +154,6 @@ export default function EditRestaurantForm({ resto, onCancel, onSave }) {
         />
       </div>
 
-      {/* Ajoute ici la sélection dynamique des tags */}
       <div>
         <label>Tags kids friendly :</label>
         <div  >
@@ -198,7 +192,7 @@ export default function EditRestaurantForm({ resto, onCancel, onSave }) {
           disabled={uploading}
         />
         {uploading && (
-          <span >⏳ Upload en cours...</span>
+          <span > Upload en cours...</span>
         )}
         {uploadError && <div >{uploadError}</div>}
       </div>
@@ -206,7 +200,7 @@ export default function EditRestaurantForm({ resto, onCancel, onSave }) {
       {error && <div >{error}</div>}
 
       <button type="submit" disabled={loading}>
-        💾 Sauvegarder
+        Sauvegarder
       </button>
       <button type="button" onClick={onCancel} >
         Annuler

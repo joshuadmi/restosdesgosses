@@ -13,16 +13,13 @@
   
 }
 
-/* Espace entre les boutons */
 .button-restaurant-page {
   display: flex;
   justify-content: space-between;
 }
 
-/* Images du resto */
+
 .restaurant-page img {
-  width: 45%;
-  object-fit: cover;
   border-radius: 10px;
   border: 1px solid #fff;
 }
@@ -34,9 +31,10 @@
   flex-wrap: wrap;
   margin-right: 10px;
   gap: 10px;
+
+  
 }
 
-/* Responsive simple */
 @media (max-width: 700px) {
   .restaurant-page {
     padding: 10px 2vw;

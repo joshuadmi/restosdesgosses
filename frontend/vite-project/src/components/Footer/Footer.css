@@ -3,6 +3,7 @@
   color: #222;
   text-align: center;
   padding: 1.2em 0 1em 0;
+  position:inherit
 }
 
 .footer a {

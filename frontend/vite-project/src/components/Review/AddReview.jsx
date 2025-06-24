@@ -25,7 +25,7 @@ export default function AddReview({ restaurantId, onReviewAdded }) {
       setCommentaire("");
       setMessage("Merci, votre avis a été pris en compte !");
 
-      if (onReviewAdded) onReviewAdded(); // pour recharger les avis après ajout
+      if (onReviewAdded) onReviewAdded(); 
     } catch (err) {
       setError(err.response?.data?.message || "Erreur lors de l'envoi");
     } finally {

@@ -36,7 +36,7 @@ export default function RegisterPage() {
 
     try {
       await register({ nom, email, motDePasse, captcha });
-      navigate("/"); // Redirige vers l’accueil une fois inscrit
+      navigate("/"); 
     } catch (err) {
       if (err.response?.data?.errors) {
         setError(err.response.data.errors.map((e) => e.msg).join(" / "));
@@ -47,7 +47,7 @@ export default function RegisterPage() {
       }
       if (captchaRef.current) {
         captchaRef.current.reset();
-        setCaptcha(""); // Vide aussi le token du state, pour forcer une nouvelle validation
+        setCaptcha(""); 
       }
     } finally {
       setLoading(false);

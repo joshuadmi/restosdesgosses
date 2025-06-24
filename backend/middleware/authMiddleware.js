@@ -1,4 +1,3 @@
-// middleware/authMiddleware.js
 
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
@@ -15,7 +14,7 @@ export const protect = async (req, res, next) => {
     if (!user) {
       return res.status(401).json({ error: 'Utilisateur invalide' });
     }
-    req.user = user;      // on stocke le user dans la requête
+    req.user = user;      
     next();
   } catch (err) {
     console.error(err);

@@ -15,17 +15,14 @@ import Footer from "./components/Footer/Footer";
 function ProtectedRoute({ children, roles = [] }) {
   const { user } = useAuth();
 
-  // Non connecté : redirige vers la page login
   if (!user) {
     return <Navigate to="/login" />;
   }
 
-  // Si des rôles sont précisés, on vérifie que le rôle du user en fait partie
   if (roles.length > 0 && !roles.includes(user.role)) {
-    return <Navigate to="/" />; // ou une page "403"
+    return <Navigate to="/" />; 
   }
 
-  // Sinon, on affiche l’enfant (la page protégée)
   return children;
 }
 

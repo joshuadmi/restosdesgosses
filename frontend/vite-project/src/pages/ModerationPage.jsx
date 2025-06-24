@@ -10,27 +10,41 @@ export default function ModerationPage() {
 
   useEffect(() => {
     if (!user || (user.role !== "admin" && user.role !== "super-user")) {
-      navigate("/"); // Redirection si pas autorisé
+      navigate("/restaurants"); 
       return;
     }
-    // Récupère les restos non validés
-    api.get("/restaurants?valideAdmin=false").then(res => setRestos(res.data));
+    
+    // les restos à valider pour un admin
+    api
+      .get("/restaurants?valideAdmin=false")
+      .then((res) => setRestos(res.data));
   }, [user, navigate]);
 
   const validerResto = async (id) => {
     await api.patch(`/restaurants/${id}/valider`);
-    setRestos(restos => restos.filter(r => r._id !== id));
+    setRestos((restos) => restos.filter((r) => r._id !== id));
+  };
+  const supprimerResto = async (id) => {
+    if (!window.confirm("Êtes-vous sûr de vouloir supprimer ce restaurant ?"))
+      return;
+    try {
+      await api.delete(`/restaurants/${id}`);
+      setRestos((restos) => restos.filter((r) => r._id !== id));
+    } catch (err) {
+      alert("Erreur lors de la suppression");
+    }
   };
 
   return (
-    <main >
+    <main>
       <h1>Modération des fiches restaurants</h1>
       {restos.length === 0 && <p>Aucune fiche à valider, pour l'instant...</p>}
       <ul>
-        {restos.map(resto => (
-          <li key={resto._id} >
+        {restos.map((resto) => (
+          <li key={resto._id}>
             <b>{resto.nom}</b> ({resto.ville})<br />
-            {resto.adresse}<br />
+            {resto.adresse}
+            <br />
             {resto.tagsKidsFriendly?.length > 0 && (
               <span>
                 <b>Tags :</b> {resto.tagsKidsFriendly.join(", ")}
@@ -39,6 +53,9 @@ export default function ModerationPage() {
             <br />
             <button onClick={() => validerResto(resto._id)}>
               Valider cette fiche
+            </button>
+            <button onClick={() => supprimerResto(resto._id)}>
+              Supprimer cette fiche
             </button>
           </li>
         ))}

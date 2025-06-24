@@ -6,7 +6,7 @@ import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import EditRestaurantForm from "./EditRestaurantForm";
-import EditReview from "../components/Review/EditReview"; // NOUVEAU
+import EditReview from "../components/Review/EditReview"; 
 
 export default function RestaurantPage() {
   const { id } = useParams();
@@ -16,13 +16,11 @@ export default function RestaurantPage() {
   const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
 
-  // Rafraîchit la liste des avis et la fiche restaurant
   const refreshAll = async () => {
     await loadRestaurant();
     await loadReviews();
   };
 
-  // Fonction pour recharger les avis
   const loadReviews = async () => {
     const res = await api.get(`/reviews/${id}`);
     setAvis(res.data);
@@ -42,6 +40,7 @@ export default function RestaurantPage() {
     }
   };
 
+  // ici on charge le resto et les avis
   useEffect(() => {
     loadRestaurant();
     loadReviews();
@@ -57,14 +56,14 @@ export default function RestaurantPage() {
         } else {
           setResto(false);
         }
-        console.error("Erreur lors du fetch resto :", err);
+        console.error("Erreur lors de la récupération du resto :", err);
       });
 
     api
       .get(`/reviews/${id}`)
       .then((res) => setAvis(res.data))
       .catch((err) => {
-        console.error("Erreur lors du fetch avis :", err);
+        console.error("Erreur lors de la récup des avis :", err);
       });
   }, [id]);
 

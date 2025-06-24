@@ -1,7 +1,5 @@
-// backend/middleware/authValidation.js
 import { body } from 'express-validator';
 
-// Validation pour l'inscription
 export const validateRegisterUser = [
   body("nom")
     .trim()
@@ -23,7 +21,6 @@ export const validateRegisterUser = [
     .withMessage("Le mot de passe doit contenir entre 4 et 20 caractères"),
 ];
 
-// Validation pour la connexion
 export const validateLoginUser = [
   body("email")
     .trim()
